@@ -6,14 +6,14 @@
 </p>
 
 
-<b><i>Estimation of COVID-19 trajectories </i></b> is to estimate COVID-19 cumulative trajectories using data integration. This project follows a paper <b><i>'Estimation of COVID-19 spread curves integrating global data and borrowing information'</i></b>(https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0236860) written by Se Yoon Lee, Bowen Lei and Bani Mallick. This paper deals with efficiency and excellence of data integration in estimating cumulatives of pandemic, that is COVID-19. 
+<b><i>Estimation of COVID-19 trajectories </i></b> is to model COVID-19 cumulative trajectories using data integration and predict expected number of infections in each country. This project follows a paper <b><i>'Estimation of COVID-19 spread curves integrating global data and borrowing information'</i></b>(https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0236860) written by Se Yoon Lee, Bowen Lei and Bani Mallick. This paper deals with efficiency and excellence of data integration in estimating cumulatives of pandemic, that is COVID-19. 
 
 
 
 <h2> Goals </h2>
 
 - Understand overall structure of Bayesian model
-- Comprehend property of shirnkage priors, especially **Horseshoe prior**
+- Comprehend properties of shirnkage priors, especially **Horseshoe prior**
 - Learn a number of sampling methods to estimate posterior distributions of BHRM parameters, especially **Slice Sampling and Elliptical Slice Sampling (ESS) **
 - Implement Slice Sampling and ESS in **R and matlab**
 - Fit model in **R, Stan and JAGs**
