@@ -14,7 +14,7 @@
 
 - Understand overall structure of Bayesian model
 - Comprehend properties of shirnkage priors, especially **Horseshoe prior**
-- Learn a number of sampling methods to estimate posterior distributions of BHRM parameters, especially **Slice Sampling and Elliptical Slice Sampling (ESS) **
+- Learn a number of sampling methods to estimate posterior distributions of BHRM parameters, especially <b>Slice Sampling and Elliptical Slice Sampling (ESS)</b>
 - Implement Slice Sampling and ESS in **R and matlab**
 - Fit model in **R, Stan and JAGs**
 - Visualize fitted values of cumulative trajectories in R
