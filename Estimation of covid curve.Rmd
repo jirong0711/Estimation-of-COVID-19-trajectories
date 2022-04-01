@@ -1,0 +1,178 @@
+---
+title: "Estimation of COVID-19"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE)
+```
+
+
+Load the time series data and covariates.
+
+```{r}
+path <- getwd()
+setwd(paste0(path,"/dataset"))
+time_series_data <- read.csv("new_time_series_data.csv")
+Y = as.matrix(time_series_data[,-1])
+design_matrix <- read.csv("new_design.csv")
+X = as.matrix(design_matrix[,-c(1:2)])
+```
+
+
+```{r, cache=TRUE}
+setwd(paste0(path,"/functions"))
+source(file = "covid_curve.R")
+library("compiler")
+
+COVID19_curve = cmpfun(COVID19_curve)
+# Execution
+seed.no = 1 ; burn = 10000 ; nmc = 5000 ; thin = 10
+varrho = 0
+pro.var.theta.2 = 0.0002 ; pro.var.theta.3 = 0.05
+mu = 0 ; rho.sq = 1
+
+res_cov <- COVID19_curve(Y = Y, X = X, seed.no = seed.no, burn = burn, nmc = nmc, thin = thin, 
+                 varrho = varrho, pro.var.theta.2 = pro.var.theta.2, pro.var.theta.3 = pro.var.theta.3, mu = mu, rho.sq = rho.sq) 
+save(res_cov, file="result.RData")
+```
+
+```{r}
+result = load("result.RData")
+```
+
+Draw the extrapolated infection trajectories and flat time points
+
+```{r}
+setwd(paste0(path,"/functions"))
+source("visualizations_individual.R")
+source("flat_time_point.R")
+```
+
+## US
+
+Draw the figure for US:
+```{r}
+output <- visualizations_individual(38, res_cov, time_series_data)
+output$figure
+```
+
+The epidemic size for the US:
+```{r}
+output$epidemic_size
+```
+
+The flat time points for the US ($\epsilon=0.9,0.99,0.999,0.9999$):
+```{r}
+output$flat_time
+```
+
+## Russia
+
+Draw the figure for Russia:
+```{r}
+output <- visualizations_individual(32, res_cov, time_series_data)
+output$figure
+```
+
+The epidemic size for the Russia:
+```{r}
+output$epidemic_size
+```
+
+The flat time points for the Russia ($\epsilon=0.9,0.99,0.999,0.9999$):
+```{r}
+output$flat_time
+```
+
+## United Kingdom
+
+Draw the figure for United Kingdom:
+```{r}
+output <- visualizations_individual(40, res_cov, time_series_data)
+output$figure
+```
+
+The epidemic size for the United Kingdom:
+```{r}
+output$epidemic_size
+```
+
+The flat time points for the United Kingdom ($\epsilon=0.9,0.99,0.999,0.9999$):
+```{r}
+output$flat_time
+```
+
+## Brazil
+
+Draw the figure for United Brazil:
+```{r}
+output <- visualizations_individual(4, res_cov, time_series_data)
+output$figure
+```
+
+The epidemic size for the Brazil:
+```{r}
+output$epidemic_size
+```
+
+The flat time points for the Brazil ($\epsilon=0.9,0.99,0.999,0.9999$):
+```{r}
+output$flat_time
+```
+
+## South Korea
+
+Draw the figure for South Korea:
+```{r}
+output <- visualizations_individual(21, res_cov, time_series_data)
+output$figure
+```
+
+The epidemic size for South Korea:
+```{r}
+output$epidemic_size
+```
+
+The flat time points for South Korea ($\epsilon=0.9,0.99,0.999,0.9999$):
+```{r}
+output$flat_time
+```
+
+
+## Japan
+
+Draw the figure for Japan:
+```{r}
+output <- visualizations_individual(20, res_cov, time_series_data)
+output$figure
+```
+
+The epidemic size for Japan:
+```{r}
+output$epidemic_size
+```
+
+The flat time points for Japan ($\epsilon=0.9,0.99,0.999,0.9999$):
+```{r}
+output$flat_time
+```
+
+
+
+## China
+
+Draw the figure for China:
+```{r}
+output <- visualizations_individual(7, res_cov, time_series_data)
+output$figure
+```
+
+The epidemic size for China:
+```{r}
+output$epidemic_size
+```
+
+The flat time points for China ($\epsilon=0.9,0.99,0.999,0.9999$):
+```{r}
+output$flat_time
+```
